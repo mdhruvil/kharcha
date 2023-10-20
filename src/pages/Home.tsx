@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { db } from "@/db/dexie";
 import { generateData } from "@/db/generateData";
 import { format } from "date-fns";
-import { exportDB, importDB } from "dexie-export-import";
+import { exportDB, importDB, importInto } from "dexie-export-import";
 import { useLiveQuery } from "dexie-react-hooks";
 import { FileDown, FileUp, IndianRupee } from "lucide-react";
 
@@ -147,7 +147,9 @@ function Home({}: Props) {
                 console.error("File Not found");
                 return;
               }
-              await importDB(e.target.files[0]);
+              await importInto(db, e.target.files[0], {
+                clearTablesBeforeImport: true,
+              });
             }}
           ></Input>
         </div>

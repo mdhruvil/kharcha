@@ -30,23 +30,28 @@ export const AccountContextProvider = ({
     if (!account) {
       setAccount(accounts[0]);
     }
-    if (accounts.length === 0) {
-      let show = true;
-      let name;
-      while (show) {
-        name = prompt("Enter");
-        if (name) {
-          show = false;
+    const clear = setTimeout(() => {
+      if (accounts.length === 0) {
+        let show = true;
+        let name;
+        while (show) {
+          name = prompt("Enter");
+          if (name) {
+            show = false;
+          }
         }
+        if (!name) {
+          return alert("Something Went Wrong please refresh the page");
+        }
+        db.accounts.add({
+          name: name,
+          createdAt: new Date(),
+        });
       }
-      if (!name) {
-        return alert("Something Went Wrong please refresh the page");
-      }
-      db.accounts.add({
-        name: name,
-        createdAt: new Date(),
-      });
-    }
+    }, 500);
+    return () => {
+      clearTimeout(clear);
+    };
   }, [accounts]);
 
   if (!account || !accounts) {
