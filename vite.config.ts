@@ -6,10 +6,10 @@ import { VitePWA, VitePWAOptions } from "vite-plugin-pwa";
 const manifest: Partial<VitePWAOptions> = {
   registerType: "autoUpdate",
   manifest: {
-    short_name: "Hisab",
+    short_name: "Hisab | By Dhruvil",
     description: "App for maintaining Hisab",
-    theme_color: "#eeeeee",
-    background_color: "#cccccc",
+    theme_color: "#ffffff",
+    background_color: "#ffffff",
     display: "standalone",
     orientation: "portrait",
     scope: "/",
@@ -82,7 +82,7 @@ const manifest: Partial<VitePWAOptions> = {
         purpose: "maskable",
       },
     ],
-    name: "Hisab",
+    name: "Hisab | By Dhruvil",
   },
 };
 
