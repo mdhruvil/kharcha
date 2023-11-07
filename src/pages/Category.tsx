@@ -1,17 +1,9 @@
 import CreateCategory from "@/components/pages/category/CreateCategory";
+import { columns } from "@/components/pages/category/columns";
+import { DataTable } from "@/components/pages/category/data-tabel";
+import { useAccount } from "@/components/pages/shared/AccountContext";
 import { db } from "@/db/dexie";
 import { useLiveQuery } from "dexie-react-hooks";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { getFormatedDate } from "@/lib/utils";
-import { useAccount } from "@/components/pages/shared/AccountContext";
 
 type Props = {};
 
@@ -33,7 +25,7 @@ function Category({}: Props) {
         </div>
       </div>
       <div>
-        <Table>
+        {/* <Table>
           <TableCaption>Categories</TableCaption>
           <TableHeader>
             <TableRow>
@@ -57,7 +49,8 @@ function Category({}: Props) {
               );
             })}
           </TableBody>
-        </Table>
+        </Table> */}
+        <DataTable columns={columns} data={categories} />
       </div>
     </div>
   );

@@ -49,7 +49,7 @@ function CreateCategory({}: Props) {
     const id = await db.categories.add({
       name,
       description,
-      createdAt: Date.now(),
+      createdAt: new Date(),
       type,
       account: account.name,
     });

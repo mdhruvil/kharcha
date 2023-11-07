@@ -18,7 +18,7 @@ export interface Category {
   type: "expense" | "income";
   name: string;
   description?: string;
-  createdAt: number;
+  createdAt: Date;
   account: string;
 }
 
@@ -28,7 +28,7 @@ export interface Subcategory {
   category: string;
   name: string;
   description?: string;
-  createdAt: number;
+  createdAt: Date;
   account: string;
 }
 

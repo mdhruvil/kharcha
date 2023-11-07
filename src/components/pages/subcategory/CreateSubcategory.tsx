@@ -65,7 +65,7 @@ function CreateSubcategory({}: Props) {
     const id = await db.subcategories.add({
       name,
       description,
-      createdAt: Date.now(),
+      createdAt: new Date(),
       type,
       category,
       account: account.name,
