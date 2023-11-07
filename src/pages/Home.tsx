@@ -1,15 +1,14 @@
-import CreateExpense from "@/components/pages/expense/CreateExpense";
-import { columns } from "@/components/pages/expense/columns";
-import { DataTable } from "@/components/pages/expense/data-table";
 import { useAccount } from "@/components/pages/shared/AccountContext";
+import CreateExpense from "@/components/pages/transactions/CreateExpense";
+import { columns } from "@/components/pages/transactions/columns";
+import { DataTable } from "@/components/pages/transactions/data-table";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { db } from "@/db/dexie";
-import { generateData } from "@/db/generateData";
 import { format } from "date-fns";
-import { exportDB, importDB, importInto } from "dexie-export-import";
+import { exportDB, importInto } from "dexie-export-import";
 import { useLiveQuery } from "dexie-react-hooks";
 import { FileDown, FileUp, IndianRupee } from "lucide-react";
 
