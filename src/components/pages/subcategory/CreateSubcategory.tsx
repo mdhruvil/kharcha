@@ -23,10 +23,13 @@ import { handleInvalidMsg } from "@/lib/utils";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useRef, useState } from "react";
 import { useAccount } from "../shared/AccountContext";
+import { PlusIcon } from "lucide-react";
 
-interface Props {}
+interface Props {
+  isSmall?: boolean;
+}
 
-function CreateSubcategory({}: Props) {
+function CreateSubcategory({ isSmall = false }: Props) {
   const [open, setOpen] = useState(false);
   const [categoryType, setCategoryType] = useState("expense");
   const { account } = useAccount();
@@ -82,7 +85,14 @@ function CreateSubcategory({}: Props) {
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline">Create Subcategory</Button>
+          {isSmall ? (
+            <Button size="icon" variant="outline" className="w-full">
+              <PlusIcon className="mr-2 h-4 w-4" />
+              Create
+            </Button>
+          ) : (
+            <Button variant="outline">Create Subcategory</Button>
+          )}
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <form ref={subcatformRef}>

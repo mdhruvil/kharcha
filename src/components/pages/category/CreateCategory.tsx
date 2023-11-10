@@ -22,10 +22,13 @@ import { db } from "@/db/dexie";
 import { handleInvalidMsg } from "@/lib/utils";
 import { useRef, useState } from "react";
 import { useAccount } from "../shared/AccountContext";
+import { PlusIcon } from "lucide-react";
 
-interface Props {}
+interface Props {
+  isSmall?: boolean;
+}
 
-function CreateCategory({}: Props) {
+function CreateCategory({ isSmall = false }: Props) {
   const [open, setOpen] = useState(false);
   const { account } = useAccount();
   const catformRef = useRef<HTMLFormElement>(null);
@@ -61,7 +64,14 @@ function CreateCategory({}: Props) {
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline">Create Category</Button>
+          {isSmall ? (
+            <Button size="icon" variant="outline" className="w-full">
+              <PlusIcon className="mr-2 h-4 w-4" />
+              Create
+            </Button>
+          ) : (
+            <Button variant="outline">Create Category</Button>
+          )}
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <form ref={catformRef}>

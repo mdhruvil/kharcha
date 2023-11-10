@@ -21,6 +21,7 @@ import {
   Select,
   SelectContent,
   SelectItem,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -32,6 +33,8 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { CalendarIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { useAccount } from "../shared/AccountContext";
+import CreateCategory from "../category/CreateCategory";
+import CreateSubcategory from "../subcategory/CreateSubcategory";
 
 type Props = {};
 
@@ -115,7 +118,7 @@ function CreateExpense({}: Props) {
     e.preventDefault();
     await createTransactionRecord();
     formRef.current.reset();
-    formRef.current[4].focus();
+    (formRef.current[4] as EventTarget & HTMLInputElement).focus();
   }
 
   return (
@@ -264,6 +267,7 @@ function CreateExpense({}: Props) {
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder={""} />
                 </SelectTrigger>
+
                 <SelectContent id="category">
                   {categories.map((category) => {
                     return (
@@ -272,6 +276,8 @@ function CreateExpense({}: Props) {
                       </SelectItem>
                     );
                   })}
+                  <SelectSeparator />
+                  <CreateCategory isSmall />
                 </SelectContent>
               </Select>
             </div>
@@ -292,6 +298,8 @@ function CreateExpense({}: Props) {
                       </SelectItem>
                     );
                   })}
+                  <SelectSeparator />
+                  <CreateSubcategory isSmall />
                 </SelectContent>
               </Select>
             </div>

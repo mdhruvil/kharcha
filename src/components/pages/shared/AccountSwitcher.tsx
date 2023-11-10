@@ -30,7 +30,7 @@ function AccountSwitcher({}: Props) {
   const { account, accounts, setAccount } = useAccount();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
 
   const addAccountHandler = async () => {
     if (!name) {
