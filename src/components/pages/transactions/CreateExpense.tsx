@@ -115,6 +115,7 @@ function CreateExpense({}: Props) {
     e.preventDefault();
     await createTransactionRecord();
     formRef.current.reset();
+    formRef.current[4].focus();
   }
 
   return (
