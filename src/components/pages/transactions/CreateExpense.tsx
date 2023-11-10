@@ -42,6 +42,7 @@ function CreateExpense({}: Props) {
   const { account } = useAccount();
 
   const [open, setOpen] = useState(false);
+  const [dateOpen, setDateOpen] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
   const [selectedType, setSelectedType] = useState("expense");
@@ -306,7 +307,7 @@ function CreateExpense({}: Props) {
             {/* //!Date */}
             <div className="grid grid-cols-4 items-center gap-4">
               <Label className="text-right">Date</Label>
-              <Popover>
+              <Popover open={dateOpen} onOpenChange={setDateOpen}>
                 <PopoverTrigger asChild>
                   <Button
                     variant={"outline"}
@@ -330,6 +331,7 @@ function CreateExpense({}: Props) {
                     onSelect={(selectedDay) => {
                       if (!selectedDay) return;
                       setDate(selectedDay);
+                      setDateOpen(false);
                     }}
                     initialFocus
                     disabled={(date) =>
