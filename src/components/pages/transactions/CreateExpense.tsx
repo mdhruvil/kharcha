@@ -108,6 +108,15 @@ function CreateExpense({}: Props) {
     return "Loading...";
   }
 
+  async function handleAddAndNew(e: React.MouseEvent<HTMLButtonElement>) {
+    if (!formRef.current?.checkValidity()) {
+      return;
+    }
+    e.preventDefault();
+    await createTransactionRecord();
+    formRef.current.reset();
+  }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -324,6 +333,9 @@ function CreateExpense({}: Props) {
           </div>
 
           <DialogFooter>
+            <Button type="submit" onClick={handleAddAndNew} variant="outline">
+              Add & New
+            </Button>
             <Button type="submit" onClick={handleCreateTransaction}>
               Add
             </Button>
