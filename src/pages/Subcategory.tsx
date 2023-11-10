@@ -1,19 +1,9 @@
+import { useAccount } from "@/components/pages/shared/AccountContext";
 import CreateSubcategory from "@/components/pages/subcategory/CreateSubcategory";
+import { columns } from "@/components/pages/subcategory/columns";
+import { DataTable } from "@/components/pages/subcategory/data-table";
 import { db } from "@/db/dexie";
 import { useLiveQuery } from "dexie-react-hooks";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { getFormatedDate } from "@/lib/utils";
-import { useAccount } from "@/components/pages/shared/AccountContext";
-import { DataTable } from "@/components/pages/subcategory/data-table";
-import { columns } from "@/components/pages/subcategory/columns";
 
 type Props = {};
 
@@ -35,33 +25,6 @@ function SubCategory({}: Props) {
       </div>
       <div>
         <DataTable columns={columns} data={subcategories} />
-        {/* <Table>
-          <TableCaption>Subcategories</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-24">Number</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Created At</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {subcategories.map((subcategory, i) => {
-              return (
-                <TableRow key={i}>
-                  <TableCell className="font-medium">{i + 1}</TableCell>
-                  <TableCell>{subcategory.name}</TableCell>
-                  <TableCell>{subcategory.category}</TableCell>
-                  <TableCell>{subcategory.type}</TableCell>
-                  <TableCell>
-                    {getFormatedDate(new Date(subcategory.createdAt))}
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table> */}
       </div>
     </div>
   );

@@ -117,6 +117,10 @@ function ActionCell({ row }: { row: Row<Category> }) {
       );
     }
     await db.categories.delete(selectedCategory.id);
+    await db.subcategories
+      .where(["account", "category"])
+      .equals([account.name, selectedCategory.name])
+      .delete();
   };
 
   return (

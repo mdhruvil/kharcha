@@ -4,6 +4,7 @@ import { DataTableColumnHeader } from "../shared/Table/DataTableColumnHeader";
 import { rankItem } from "@tanstack/match-sorter-utils";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 
 export const columns: ColumnDef<Subcategory>[] = [
   {
@@ -52,6 +53,17 @@ export const columns: ColumnDef<Subcategory>[] = [
     filterFn: (row, columnId, filter) => {
       return (filter as string[]).includes(row.getValue(columnId));
     },
+  },
+  {
+    accessorKey: "createdAt",
+    header: ({ column }) => {
+      return <DataTableColumnHeader column={column} title="Created On" />;
+    },
+    cell: ({ row }) => {
+      return format(row.original.createdAt, "dd/MM/yyyy");
+    },
+    sortingFn: "datetime",
+    sortDescFirst: true,
   },
 ];
 
