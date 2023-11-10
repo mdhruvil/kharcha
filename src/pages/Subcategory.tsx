@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/table";
 import { getFormatedDate } from "@/lib/utils";
 import { useAccount } from "@/components/pages/shared/AccountContext";
+import { DataTable } from "@/components/pages/subcategory/data-table";
+import { columns } from "@/components/pages/subcategory/columns";
 
 type Props = {};
 
@@ -32,7 +34,8 @@ function SubCategory({}: Props) {
         </div>
       </div>
       <div>
-        <Table>
+        <DataTable columns={columns} data={subcategories} />
+        {/* <Table>
           <TableCaption>Subcategories</TableCaption>
           <TableHeader>
             <TableRow>
@@ -58,7 +61,7 @@ function SubCategory({}: Props) {
               );
             })}
           </TableBody>
-        </Table>
+        </Table> */}
       </div>
     </div>
   );
