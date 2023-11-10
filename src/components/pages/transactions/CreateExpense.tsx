@@ -125,7 +125,7 @@ function CreateExpense({}: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Transaction</Button>
+        <Button>Add Transaction</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form ref={formRef}>

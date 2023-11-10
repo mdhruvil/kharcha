@@ -14,19 +14,6 @@ import { FileDown, FileUp, IndianRupee } from "lucide-react";
 
 type Props = {};
 
-function saveFile(blob: Blob, filename: string) {
-  const a = document.createElement("a");
-  document.body.appendChild(a);
-  const url = window.URL.createObjectURL(blob);
-  a.href = url;
-  a.download = filename;
-  a.click();
-  setTimeout(() => {
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
-  }, 0);
-}
-
 function Home({}: Props) {
   const { account } = useAccount();
 
@@ -41,7 +28,7 @@ function Home({}: Props) {
   return (
     <>
       {/* <SideBar /> */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-5">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-green-700">
@@ -115,7 +102,7 @@ function Home({}: Props) {
           </CardContent>
         </Card>
       </div>
-      <div className="flex items-center justify-between">
+      {/* <div className="flex items-center justify-between">
         <CreateExpense />
         <div className="flex gap-2">
           <Button
@@ -152,7 +139,7 @@ function Home({}: Props) {
             }}
           ></Input>
         </div>
-      </div>
+      </div> */}
       <DataTable columns={columns} data={data} />
       <footer className="fixed bottom-0 left-0 flex items-center justify-center w-full mb-2">
         <p className="text-center text-sm leading-loose">
