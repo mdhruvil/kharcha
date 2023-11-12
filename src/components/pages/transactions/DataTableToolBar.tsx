@@ -1,30 +1,23 @@
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
-import { Transaction, db } from "@/db/dexie";
-import { Table } from "@tanstack/react-table";
-import { format, sub } from "date-fns";
-import { CalendarIcon, ColumnsIcon, DownloadIcon } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { utils, writeFile } from "xlsx";
-import { DataTableFacetedFilter } from "../shared/Table/DataTableFactedFilter";
-import { useAccount } from "../shared/AccountContext";
-import { useLiveQuery } from "dexie-react-hooks";
-import { Cross2Icon } from "@radix-ui/react-icons";
-import { DataTableViewOptions } from "../shared/Table/DataTableViewOption";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Transaction, db } from "@/db/dexie";
 import { cn } from "@/lib/utils";
-import { Calendar } from "@/components/ui/calendar";
+import { Cross2Icon } from "@radix-ui/react-icons";
+import { Table } from "@tanstack/react-table";
+import { format, sub } from "date-fns";
+import { useLiveQuery } from "dexie-react-hooks";
+import { CalendarIcon, DownloadIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { utils, writeFile } from "xlsx";
+import { useAccount } from "../shared/AccountContext";
+import { DataTableFacetedFilter } from "../shared/Table/DataTableFactedFilter";
+import { DataTableViewOptions } from "../shared/Table/DataTableViewOption";
 
 interface Props<TData> {
   table: Table<TData>;
@@ -35,6 +28,8 @@ function DataTableToolBar<TData>({ table }: Props<TData>) {
 
   const [fromDate, setFromDate] = useState(sub(new Date(), { weeks: 1 }));
   const [toDate, setToDate] = useState(new Date());
+  const [fromModal, setFromModal] = useState(false);
+  const [toModal, setToModal] = useState(false);
 
   const { account } = useAccount();
   const categories = useLiveQuery(() => {
@@ -116,7 +111,7 @@ function DataTableToolBar<TData>({ table }: Props<TData>) {
           {/* //? Date Picker  */}
           <div className="flex items-center gap-2 ml-5">
             From
-            <Popover>
+            <Popover open={fromModal} onOpenChange={setFromModal}>
               <PopoverTrigger asChild>
                 <Button
                   variant={"outline"}
@@ -138,6 +133,7 @@ function DataTableToolBar<TData>({ table }: Props<TData>) {
                   mode="single"
                   selected={fromDate}
                   onSelect={(selectedDay) => {
+                    setFromModal(false);
                     if (!selectedDay) return;
                     setFromDate(selectedDay);
                   }}
@@ -146,7 +142,7 @@ function DataTableToolBar<TData>({ table }: Props<TData>) {
               </PopoverContent>
             </Popover>
             To
-            <Popover>
+            <Popover open={toModal} onOpenChange={setToModal}>
               <PopoverTrigger asChild>
                 <Button
                   variant={"outline"}
@@ -168,6 +164,7 @@ function DataTableToolBar<TData>({ table }: Props<TData>) {
                   mode="single"
                   selected={toDate}
                   onSelect={(selectedDay) => {
+                    setToModal(false);
                     if (!selectedDay) return;
                     setToDate(selectedDay);
                   }}

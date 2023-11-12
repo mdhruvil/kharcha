@@ -125,7 +125,15 @@ function CreateExpense({}: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Add Transaction</Button>
+        <Button
+          data-umami-event="Add transaction button"
+          data-umami-event-email="dhruvil@mozzila.com"
+          data-umami-event-id="69420"
+          data-umami-event-type="Add transaction"
+          data-umami-event-value="value "
+        >
+          Add Transaction
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form ref={formRef}>
@@ -168,7 +176,7 @@ function CreateExpense({}: Props) {
                   />
                   <Label
                     htmlFor="expense"
-                    className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-3 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                    className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-3  peer-data-[state=checked]:border-red-500 [&:has([data-state=checked])]:border-red-900 text-red-500"
                   >
                     Expense
                   </Label>
@@ -181,7 +189,7 @@ function CreateExpense({}: Props) {
                   />
                   <Label
                     htmlFor="income"
-                    className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-3 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                    className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-3  peer-data-[state=checked]:border-green-500 [&:has([data-state=checked])]:border-green-500 text-green-700"
                   >
                     Income
                   </Label>
