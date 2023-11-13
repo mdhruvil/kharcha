@@ -20,9 +20,11 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { DataTablePagination } from "../shared/Table/DataTablePagination";
 import DataTableToolBar from "./DataTableToolBar";
+import { Button } from "@/components/ui/button";
+import { utils, writeFile } from "xlsx";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -33,6 +35,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const tableRef = useRef<HTMLTableElement>(null);
   const [sorting, setSorting] = useState<SortingState>([
     { id: "createdAt", desc: true },
   ]);
@@ -60,9 +63,9 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <DataTableToolBar table={table} />
+      <DataTableToolBar table={table} tableRef={tableRef} />
       <div className="rounded-md border">
-        <Table>
+        <Table ref={tableRef}>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>

@@ -76,7 +76,21 @@ function SideBar(props: Props) {
           </Link>
         );
       })}
-
+      <Input
+        type="file"
+        className="hidden"
+        id="importfile"
+        onChange={async (e) => {
+          console.log(e.target.files);
+          if (!e.target.files) {
+            console.error("File Not found");
+            return;
+          }
+          await importInto(db, e.target.files[0], {
+            clearTablesBeforeImport: true,
+          });
+        }}
+      ></Input>
       <Separator className="my-2" />
       <CreateExpense />
       <DropdownMenu>
@@ -101,20 +115,6 @@ function SideBar(props: Props) {
               <FileUp className="h-4 w-4 mr-2" />
               Import Backup
             </Label>
-            <Input
-              type="file"
-              className="hidden"
-              id="importfile"
-              onChange={async (e) => {
-                if (!e.target.files) {
-                  console.error("File Not found");
-                  return;
-                }
-                await importInto(db, e.target.files[0], {
-                  clearTablesBeforeImport: true,
-                });
-              }}
-            ></Input>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -21,9 +21,10 @@ import { DataTableViewOptions } from "../shared/Table/DataTableViewOption";
 
 interface Props<TData> {
   table: Table<TData>;
+  tableRef: React.RefObject<HTMLTableElement>;
 }
 
-function DataTableToolBar<TData>({ table }: Props<TData>) {
+function DataTableToolBar<TData>({ table, tableRef }: Props<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
   const [fromDate, setFromDate] = useState(sub(new Date(), { weeks: 1 }));
@@ -57,6 +58,13 @@ function DataTableToolBar<TData>({ table }: Props<TData>) {
       origin: "A1",
     });
     writeFile(workbook, `Transactions.xlsx`, { compression: true });
+  };
+
+  const exportTable = () => {
+    const wb = utils.table_to_book(tableRef.current);
+
+    /* Export to file (start a download) */
+    writeFile(wb, "SheetJSTable.xlsx");
   };
 
   if (!categories || !subcategories) {
@@ -177,7 +185,7 @@ function DataTableToolBar<TData>({ table }: Props<TData>) {
       </div>
       <div className="flex items-center justify-center gap-2">
         <DataTableViewOptions table={table} />
-        <Button variant="outline" onClick={exportToXLSX}>
+        <Button variant="outline" onClick={exportTable}>
           <DownloadIcon className="h-4 w-4 mr-2" />
           Export
         </Button>
