@@ -6,7 +6,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Transaction, db } from "@/db/dexie";
+import { db } from "@/db/dexie";
 import { cn } from "@/lib/utils";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
@@ -47,18 +47,18 @@ function DataTableToolBar<TData>({ table, tableRef }: Props<TData>) {
     });
   }, [fromDate, toDate]);
 
-  const exportToXLSX = () => {
-    const exportableData = table.getSortedRowModel().rows.map((row) => {
-      return row.original as Transaction;
-    });
-    const worksheet = utils.json_to_sheet(exportableData);
-    const workbook = utils.book_new();
-    utils.book_append_sheet(workbook, worksheet, "Transactions Data");
-    utils.sheet_add_aoa(worksheet, [Object.keys(exportableData[0])], {
-      origin: "A1",
-    });
-    writeFile(workbook, `Transactions.xlsx`, { compression: true });
-  };
+  // const exportToXLSX = () => {
+  //   const exportableData = table.getSortedRowModel().rows.map((row) => {
+  //     return row.original as Transaction;
+  //   });
+  //   const worksheet = utils.json_to_sheet(exportableData);
+  //   const workbook = utils.book_new();
+  //   utils.book_append_sheet(workbook, worksheet, "Transactions Data");
+  //   utils.sheet_add_aoa(worksheet, [Object.keys(exportableData[0])], {
+  //     origin: "A1",
+  //   });
+  //   writeFile(workbook, `Transactions.xlsx`, { compression: true });
+  // };
 
   const exportTable = () => {
     const wb = utils.table_to_book(tableRef.current);

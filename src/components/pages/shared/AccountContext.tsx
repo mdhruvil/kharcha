@@ -35,7 +35,7 @@ export const AccountContextProvider = ({
         let show = true;
         let name;
         while (show) {
-          name = prompt("Enter");
+          name = prompt("Enter account name ");
           if (name) {
             show = false;
           }
