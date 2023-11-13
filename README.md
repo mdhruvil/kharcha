@@ -1,4 +1,4 @@
-![HomePage](./screenshots/Screenshot%20from%202023-11-13%2011-57-21.png)
+![HomePage](./screenshots/Screenshot%20from%202023-11-13%2011-57-33.png)
 
 # Kharcha
 
