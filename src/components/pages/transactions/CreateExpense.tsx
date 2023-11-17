@@ -219,7 +219,7 @@ function CreateExpense({}: Props) {
               <Label htmlFor="title" className="text-right">
                 Title
               </Label>
-              <Input
+              <Textarea
                 id="title"
                 className="col-span-3"
                 required
