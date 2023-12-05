@@ -11,19 +11,12 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Transaction, db } from "@/db/dexie";
 import { cn } from "@/lib/utils";
 import { rankItem } from "@tanstack/match-sorter-utils";
 import { ColumnDef, Row } from "@tanstack/react-table";
 import { format, isSameDay, isWithinInterval } from "date-fns";
-import { MoreHorizontal, Pencil, Trash2Icon } from "lucide-react";
+import { Pencil, Trash2Icon } from "lucide-react";
 import { DataTableColumnHeader } from "../shared/Table/DataTableColumnHeader";
 import UpdateExpense from "./UpdateExpense";
 
